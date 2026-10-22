@@ -1,0 +1,1653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fixth — Find your SIWES placement</title>
+<meta name="description" content="Find SIWES, industrial training and internship placements from verified companies across Nigeria. Apply with one profile and track every application." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 229 172'%3E%3Cpath fill='%230F35DB' d='M62.14 0H86.4v43l-21.55.1C52.96 43.1 43.3 52.72 43.3 64.56s9.65 21.45 21.55 21.45l21.55.1v43H62.14c-6.6 0-12.97-1.03-18.94-2.93V172H0V58.1h.12C2.06 25.7 29.09 0 62.13 0zM229 43l-21.73.05-.2.2c-11.79.1-21.33 9.61-21.35 21.33v.05c0 11.8 9.65 21.37 21.55 21.37.66 0 1.3-.04 1.95-.1l19.7.1v43h-24.46l-.3-.1c-15.37-.78-29.32-6.87-40.05-16.45-10.71 9.58-24.68 15.67-40.05 16.45l-.3.1-24.38-.15V85.86l19.63.06c.63.06 1.29.09 1.95.09 11.9 0 21.55-9.57 21.55-21.38v-.05c-.03-11.72-9.56-21.22-21.35-21.33l-.2-.2-21.66.09V.16h22.04l.04.01.01-.01c16.43.18 31.39 6.41 42.74 16.54C175.48 6.57 190.44.34 206.86.16L206.89.15 229 0z'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          // Fixth brand guidelines
+          brand:  { DEFAULT: '#0F35DB', 50: '#EEF1FD', 100: '#D4DBFA', 600: '#0F35DB', 700: '#0B29AE', 800: '#081E80' },
+          navy:   '#00002E',
+          cyan:   '#D5FFFF',
+          ink:    '#030303',
+          paper:  '#F3F3F3',
+          gray:   '#7B7B7B',
+          line:   '#E2E2E2',
+        },
+        fontFamily: {
+          display: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          sans:    ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html, body { background:#FFFFFF; color:#030303; }
+  body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  .ti { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  .hero-bg {
+    background: radial-gradient(60% 45% at 50% 0%, rgba(15,53,219,.06), transparent 70%), #FFFFFF;
+  }
+
+  /* Auth-panel surface: bright brand gradient + film grain */
+  .brand-surface {
+    background:
+      radial-gradient(45% 40% at 0% 0%, rgba(169,210,255,.85) 0%, rgba(169,210,255,0) 75%),
+      linear-gradient(155deg, #3150EC 0%, #1E3CE2 30%, #1530D0 60%, #0D21A8 85%, #08167E 100%);
+  }
+  .grain::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .22; mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+
+
+
+  @keyframes chain-drift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-30px); } }
+  @keyframes chain-sheen { from { transform: translateX(-320px); } to { transform: translateX(320px); } }
+  .chain-drift { animation: chain-drift 14s ease-in-out infinite; }
+  .chain-sheen { animation: chain-sheen 8s ease-in-out infinite alternate; }
+  .chain-drift.chain-alt, .chain-sheen.chain-alt { animation-delay: -6s; animation-direction: alternate-reverse; }
+  @media (prefers-reduced-motion: reduce) { .chain-drift, .chain-sheen { animation: none; } }
+  /* Cursor spotlight: reveals the brand chain pattern around the pointer */
+  .spotlight { --mx: 50%; --my: 40%; opacity: 0; transition: opacity .6s ease; }
+  .spotlight.is-on { opacity: 1; }
+  .spotlight-pattern {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129.4 170'><path fill='%230F35DB' transform='translate(-99.3 20)' d='M229 43.0009L207.275 43.0459L207.074 43.2463C195.28 43.3515 185.747 52.8593 185.724 64.5738V64.6224C185.724 76.4312 195.374 85.9985 207.275 85.9985C207.93 85.9985 208.576 85.9631 209.221 85.9049L228.916 85.9985V128.999H204.459L204.165 128.905C188.796 128.124 174.844 122.032 164.115 112.452C153.399 122.032 139.435 128.124 124.065 128.905L123.771 128.999L99.3818 128.848V85.8596L119.009 85.9178C119.642 85.976 120.302 86.0114 120.959 86.0114C132.858 86.0104 142.506 76.4405 142.506 64.632V64.5867C142.482 52.8603 132.95 43.3611 121.155 43.2559L120.959 43.0591L99.301 43.1494V0.164729H121.343L121.379 0.174419L121.391 0.164729C137.817 0.340065 152.779 6.57103 164.128 16.699C175.478 6.57066 190.437 0.339767 206.864 0.164729L206.887 0.151809L229 0V43.0009Z'/></svg>");
+    background-size: 84px auto;
+    opacity: .07;
+    -webkit-mask-image: radial-gradient(240px circle at var(--mx) var(--my), #000 0%, rgba(0,0,0,.6) 35%, transparent 75%);
+            mask-image: radial-gradient(240px circle at var(--mx) var(--my), #000 0%, rgba(0,0,0,.6) 35%, transparent 75%);
+  }
+  .spotlight-glow { background: radial-gradient(320px circle at var(--mx) var(--my), rgba(15,53,219,.06), transparent 70%); }
+</style>
+<script>document.documentElement.classList.add('js-anim');</script>
+<style>.js-anim [data-intro]{visibility:hidden}</style>
+</head>
+
+<body class="font-sans antialiased">
+
+<!-- Tabler icon sprite -->
+<svg width="0" height="0" class="absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"/><path d="M15 19l2 2l4 -4"/></symbol>
+  <symbol id="i-verified" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6l6 -6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6l0 13"/><path d="M12 6l0 13"/><path d="M21 6l0 13"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6 -6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5l10 -10"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/><path d="M9 13h6"/><path d="M9 17h4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7v5l3 3"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"/><path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"/><path d="M12 12l0 .01"/><path d="M3 13a20 20 0 0 0 18 0"/></symbol>
+
+  <!-- Brand pattern: the "x" from the fixth icon mark, chained -->
+  <defs>
+    <path id="xg" d="M229 43.0009L207.275 43.0459L207.074 43.2463C195.28 43.3515 185.747 52.8593 185.724 64.5738V64.6224C185.724 76.4312 195.374 85.9985 207.275 85.9985C207.93 85.9985 208.576 85.9631 209.221 85.9049L228.916 85.9985V128.999H204.459L204.165 128.905C188.796 128.124 174.844 122.032 164.115 112.452C153.399 122.032 139.435 128.124 124.065 128.905L123.771 128.999L99.3818 128.848V85.8596L119.009 85.9178C119.642 85.976 120.302 86.0114 120.959 86.0114C132.858 86.0104 142.506 76.4405 142.506 64.632V64.5867C142.482 52.8603 132.95 43.3611 121.155 43.2559L120.959 43.0591L99.301 43.1494V0.164729H121.343L121.379 0.174419L121.391 0.164729C137.817 0.340065 152.779 6.57103 164.128 16.699C175.478 6.57066 190.437 0.339767 206.864 0.164729L206.887 0.151809L229 0V43.0009Z"/>
+    <clipPath id="chain4">
+      <use href="#xg" x="-99.3"/><use href="#xg" x="29.9"/><use href="#xg" x="159.1"/><use href="#xg" x="288.3"/>
+    </clipPath>
+    <linearGradient id="chain-fill-a" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00002E"/>
+      <stop offset=".45" stop-color="#0F35DB"/>
+      <stop offset="1" stop-color="#2D5BFF"/>
+    </linearGradient>
+    <linearGradient id="chain-fill-b" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2D5BFF"/>
+      <stop offset=".55" stop-color="#0F35DB"/>
+      <stop offset="1" stop-color="#00002E"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+    <clipPath id="chainL">
+      <use href="#xg" x="-99.3"/><use href="#xg" x="29.9"/><use href="#xg" x="159.1"/><use href="#xg" x="288.3"/>
+    </clipPath>
+    <clipPath id="chainR">
+      <use href="#xg" x="417.5"/><use href="#xg" x="546.7"/><use href="#xg" x="675.9"/><use href="#xg" x="805.1"/>
+    </clipPath>
+    <linearGradient id="fillL" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="517" y2="0">
+      <stop offset="0" stop-color="#9DB8FF" stop-opacity="0"/><stop offset=".45" stop-color="#7C9CFF" stop-opacity=".55"/><stop offset="1" stop-color="#D5FFFF" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="fillR" gradientUnits="userSpaceOnUse" x1="517" y1="0" x2="1034" y2="0">
+      <stop offset="0" stop-color="#D5FFFF" stop-opacity=".95"/><stop offset=".55" stop-color="#7C9CFF" stop-opacity=".55"/><stop offset="1" stop-color="#9DB8FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lumL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9DB8FF" stop-opacity="0"/><stop offset=".45" stop-color="#7C9CFF" stop-opacity=".55"/><stop offset="1" stop-color="#D5FFFF" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="lumR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D5FFFF" stop-opacity=".95"/><stop offset=".55" stop-color="#7C9CFF" stop-opacity=".55"/><stop offset="1" stop-color="#9DB8FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ===== NAV ===== -->
+<header data-intro="nav" class="absolute inset-x-0 top-0 z-30">
+  <div class="mx-auto max-w-[1200px] h-16 sm:h-20 px-5 sm:px-6 flex items-center justify-between">
+    <a href="#" class="text-brand" aria-label="Fixth home">
+      <svg viewBox="0 0 421 173" class="h-6 sm:h-7 w-auto" fill="currentColor" aria-hidden="true">
+        <path d="M49.3973 34.6109H68.6911V69.2127L51.5605 69.2885C42.1004 69.2885 34.4298 77.0163 34.4298 86.5471C34.4298 96.0778 42.1004 103.805 51.5605 103.805L68.6911 103.881V138.483H49.3973C44.1502 138.483 39.0896 137.656 34.3455 136.125V173H0V81.3446H0.0932668C1.64055 55.2692 23.1238 34.6018 49.3883 34.6018L49.3973 34.6109ZM272.77 36.884C277.514 35.3536 282.572 34.5278 287.82 34.5278H307.115V69.1296L289.985 69.2036C280.525 69.2036 272.853 76.9316 272.853 86.4621C272.853 95.9929 280.525 103.72 289.985 103.72L307.115 103.796V138.398H287.82L287.811 138.407C261.547 138.407 240.063 117.74 238.515 91.6644H238.425V0.0108419H272.77V36.884ZM96.6802 47.7946C106.14 47.7949 113.81 55.5227 113.811 65.0529V138.398H79.4742V65.0529H79.5495C79.5498 55.5225 87.2202 47.7946 96.6802 47.7946ZM227.65 69.1945L210.378 69.2325L210.22 69.3916C200.844 69.4762 193.266 77.1288 193.247 86.556V86.5939C193.247 96.0965 200.917 103.796 210.378 103.796C210.899 103.796 211.414 103.767 211.926 103.72L227.583 103.796V138.398H208.141L207.907 138.322C195.69 137.693 184.599 132.792 176.07 125.083C167.551 132.792 156.451 137.693 144.232 138.322L143.999 138.398L124.612 138.275V103.684L140.214 103.731C140.718 103.778 141.24 103.805 141.762 103.805C151.222 103.805 158.893 96.1056 158.893 86.603V86.565C158.874 77.1286 151.296 69.4852 141.92 69.4007L141.762 69.2415L124.547 69.3157V34.7246H142.069L142.098 34.7337L142.107 34.7246C155.164 34.8655 167.057 39.8792 176.079 48.0294C185.102 39.879 196.994 34.8655 210.053 34.7246L210.071 34.7156L227.65 34.5927V69.1945ZM352.244 36.9491C356.942 35.4374 361.947 34.6025 367.137 34.5837H371.714C398.947 34.6588 421 56.8936 421 84.3117V138.398H386.636V86.491H386.561C386.561 76.9793 378.91 69.2608 369.458 69.2415C360.007 69.2604 352.356 76.9791 352.356 86.491H352.28V138.398H317.917V0.00903488H352.244V36.9491ZM96.689 0.0108419C106.149 0.0109907 113.82 7.73865 113.82 17.2693C113.819 26.7996 106.149 34.5276 96.689 34.5278C87.2292 34.5278 79.5588 26.7996 79.5585 17.2693C79.5585 7.73855 87.2288 0.0108419 96.689 0.0108419ZM317.917 0.00903488H317.908L317.917 0V0.00903488Z"/>
+      </svg>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-9 text-[15px] text-ink/60">
+      <a href="#students" class="hover:text-navy transition-colors">For students</a>
+      <a href="#companies" class="hover:text-navy transition-colors">For companies</a>
+      <a href="#how" class="hover:text-navy transition-colors">How it works</a>
+      <a href="#faq" class="hover:text-navy transition-colors">FAQ</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="#login" class="hidden sm:inline-flex items-center h-10 px-4 rounded-lg bg-brand-50 border border-brand/15 text-brand text-[15px] font-semibold hover:bg-brand-100 transition-colors">Sign in</a>
+      <a href="#start" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-brand text-white text-[15px] font-semibold hover:bg-brand-700 transition-colors">
+        Get started <svg class="ti text-[16px]"><use href="#i-arrow"/></svg>
+      </a>
+      <!-- Mobile menu toggle -->
+      <button id="nav-toggle" type="button" aria-controls="mnav" aria-expanded="false" aria-label="Open menu"
+              class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/80 ring-1 ring-ink/[0.08] text-navy backdrop-blur">
+        <svg data-ico="open" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg data-ico="close" viewBox="0 0 24 24" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mnav" class="md:hidden hidden px-5">
+    <div class="mx-auto max-w-[1200px] rounded-2xl bg-white ring-1 ring-ink/[0.08] shadow-[0_1px_2px_rgba(0,0,46,.05),0_30px_60px_-30px_rgba(0,0,46,.25)] overflow-hidden">
+      <nav class="flex flex-col text-[15px]">
+        <a href="#students" class="px-5 py-3.5 border-b border-line text-navy font-medium hover:bg-paper">For students</a>
+        <a href="#companies" class="px-5 py-3.5 border-b border-line text-navy font-medium hover:bg-paper">For companies</a>
+        <a href="#how" class="px-5 py-3.5 border-b border-line text-navy font-medium hover:bg-paper">How it works</a>
+        <a href="#faq" class="px-5 py-3.5 text-navy font-medium hover:bg-paper">FAQ</a>
+      </nav>
+      <div class="p-4 bg-paper/60 border-t border-line flex items-center gap-2">
+        <a href="#login" class="flex-1 inline-flex items-center justify-center h-11 rounded-lg bg-brand-50 border border-brand/15 text-brand text-[14px] font-semibold">Sign in</a>
+        <a href="#start" class="flex-1 inline-flex items-center justify-center gap-1.5 h-11 rounded-lg bg-brand text-white text-[14px] font-semibold">
+          Get started <svg class="ti text-[15px]"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const btn = document.getElementById('nav-toggle');
+      const panel = document.getElementById('mnav');
+      if (!btn || !panel) return;
+      const open = btn.querySelector('[data-ico="open"]');
+      const close = btn.querySelector('[data-ico="close"]');
+      btn.addEventListener('click', () => {
+        const now = panel.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!now));
+        btn.setAttribute('aria-label', now ? 'Open menu' : 'Close menu');
+        open.classList.toggle('hidden', !now);
+        close.classList.toggle('hidden', now);
+      });
+      panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => btn.click()));
+    })();
+  </script>
+</header>
+
+<!-- ===== HERO ===== -->
+<section data-hero class="hero-bg relative overflow-hidden">
+  <div data-spotlight aria-hidden="true" class="spotlight pointer-events-none absolute inset-0">
+    <div class="spotlight-glow absolute inset-0"></div>
+    <div class="spotlight-pattern absolute inset-0"></div>
+  </div>
+
+  <!-- ===== Side compositions (brand chain pattern) ===== -->
+  <div class="hidden xl:block pointer-events-none absolute inset-y-0 left-1/2 w-[1440px] -translate-x-1/2" aria-hidden="true">
+
+    <!-- Left chain -->
+    <div data-chain="left" class="absolute inset-0"><div data-par class="absolute inset-0"><div data-ptr class="absolute inset-0">
+    <svg viewBox="0 0 518.8 129" class="absolute w-[520px] left-[-250px] top-[360px] -rotate-[30deg] opacity-[0.12]">
+      <g clip-path="url(#chain4)" class="chain-drift">
+        <rect width="518.8" height="129" fill="url(#chain-fill-a)"/>
+        <ellipse class="chain-sheen" cx="260" cy="40" rx="130" ry="70" fill="#8FD8FF" opacity=".85" filter="url(#soft)"/>
+      </g>
+    </svg>
+    </div></div></div>
+
+    <!-- Right chain -->
+    <div data-chain="right" class="absolute inset-0"><div data-par class="absolute inset-0"><div data-ptr class="absolute inset-0">
+    <svg viewBox="0 0 518.8 129" class="absolute w-[520px] right-[-270px] top-[210px] -rotate-[30deg] opacity-[0.12]">
+      <g clip-path="url(#chain4)" class="chain-drift chain-alt">
+        <rect width="518.8" height="129" fill="url(#chain-fill-b)"/>
+        <ellipse class="chain-sheen chain-alt" cx="260" cy="90" rx="130" ry="70" fill="#8FD8FF" opacity=".85" filter="url(#soft)"/>
+      </g>
+    </svg>
+    </div></div></div>
+  </div>
+
+  <div data-hero-content class="relative mx-auto max-w-[1080px] px-6 lg:px-10 pt-32 lg:pt-36 pb-20 text-center">
+
+    <a href="#opportunities" data-intro="pill"
+       class="group inline-flex items-center gap-3 h-10 pl-1.5 pr-4 rounded-lg bg-white/70 backdrop-blur
+              border border-ink/[0.07] shadow-[0_1px_2px_rgba(0,0,46,.05),0_8px_24px_-12px_rgba(0,0,46,.15)]
+              text-[14px] text-ink/75 hover:text-ink hover:border-ink/15 transition-colors">
+      <span class="inline-flex items-center h-7 px-2.5 rounded-md bg-brand text-white text-[12px] font-semibold tracking-wide">New</span>
+      <span class="tracking-[-0.01em]">Every SIWES opening, in one place</span>
+      <svg class="ti text-[15px] text-ink/40 group-hover:text-brand group-hover:translate-x-0.5 transition"><use href="#i-arrow"/></svg>
+    </a>
+
+    <h1 data-intro="h1" class="mt-8 font-display font-semibold text-navy tracking-[-0.04em] leading-[1.02]
+               text-[42px] sm:text-[60px] lg:text-[80px]">
+      <span class="block overflow-hidden pb-[0.12em] -mb-[0.12em] px-[0.08em] -mx-[0.08em]"><span data-line class="block">Find your SIWES</span></span>
+      <span class="block overflow-hidden pb-[0.12em] -mb-[0.12em] px-[0.08em] -mx-[0.08em]"><span data-line class="block">placement, <em class="font-semibold italic text-brand pr-1 whitespace-nowrap">stress-free.</em></span></span>
+    </h1>
+
+    <p data-intro="sub" class="mt-7 mx-auto max-w-[620px] text-[18px] sm:text-[20px] leading-[1.5] text-ink/65">
+      See real openings from verified companies, apply with one profile,
+      and know exactly where every application stands.
+    </p>
+
+    <!-- Search -->
+    <form data-intro="search" action="#opportunities" role="search"
+          class="mt-10 mx-auto max-w-[780px] flex flex-col md:flex-row md:items-center
+                 rounded-xl bg-white p-2 md:p-1.5 text-left
+                 ring-1 ring-ink/[0.07] shadow-[0_1px_2px_rgba(0,0,46,.04),0_20px_44px_-24px_rgba(0,0,46,.28)]
+                 focus-within:ring-brand/30 transition-shadow">
+
+      <label class="flex items-center gap-3 md:flex-1 min-w-0 h-14 md:h-[52px] pl-4 md:pl-5 pr-3">
+        <svg class="ti text-[19px] text-ink/40"><use href="#i-search"/></svg>
+        <span class="sr-only">Search</span>
+        <input type="text" name="q" data-typer aria-label="Search roles, skills or companies" placeholder="Search roles, skills or companies"
+               class="w-full bg-transparent text-[15px] text-ink placeholder:text-ink/40 outline-none" />
+      </label>
+
+      <span class="hidden md:block w-px h-6 bg-ink/10"></span>
+
+      <label class="relative flex items-center gap-2.5 h-14 md:h-[52px] px-4 md:w-[176px] border-t border-ink/[0.06] md:border-0 cursor-pointer">
+        <svg class="ti text-[18px] text-ink/40"><use href="#i-book"/></svg>
+        <span class="sr-only">Course</span>
+        <select name="course" class="w-full appearance-none bg-transparent text-[15px] text-ink outline-none cursor-pointer pr-5">
+          <option>Any course</option>
+          <option>Computer Science</option>
+          <option>Accounting</option>
+          <option>Business Administration</option>
+          <option>Microbiology</option>
+          <option>Mass Communication</option>
+          <option>Engineering</option>
+        </select>
+        <svg class="ti absolute right-3 text-[14px] text-ink/40 pointer-events-none"><use href="#i-chevron"/></svg>
+      </label>
+
+      <span class="hidden md:block w-px h-6 bg-ink/10"></span>
+
+      <label class="relative flex items-center gap-2.5 h-14 md:h-[52px] px-4 md:w-[156px] border-t border-ink/[0.06] md:border-0 cursor-pointer">
+        <svg class="ti text-[18px] text-ink/40"><use href="#i-pin"/></svg>
+        <span class="sr-only">Location</span>
+        <select name="location" class="w-full appearance-none bg-transparent text-[15px] text-ink outline-none cursor-pointer pr-5">
+          <option>Anywhere</option>
+          <option>Lagos</option>
+          <option>Abuja</option>
+          <option>Port Harcourt</option>
+          <option>Ibadan</option>
+          <option>Kano</option>
+          <option>Enugu</option>
+        </select>
+        <svg class="ti absolute right-3 text-[14px] text-ink/40 pointer-events-none"><use href="#i-chevron"/></svg>
+      </label>
+
+      <button type="submit"
+              class="mt-1 md:mt-0 md:ml-1 inline-flex items-center justify-center gap-2 h-[52px] px-6 rounded-lg
+                     bg-brand text-white text-[15px] font-semibold hover:bg-brand-700 transition-colors">
+        Search <svg class="ti text-[17px]"><use href="#i-arrow"/></svg>
+      </button>
+    </form>
+
+    <!-- Popular courses -->
+    <div data-intro="rest" class="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[14px]">
+      <span class="text-ink/40">Popular</span>
+      <a href="#" class="text-ink/65 hover:text-brand transition">Computer Science</a>
+      <a href="#" class="text-ink/65 hover:text-brand transition">Accounting</a>
+      <a href="#" class="text-ink/65 hover:text-brand transition">Microbiology</a>
+      <a href="#" class="text-ink/65 hover:text-brand transition">Mass Communication</a>
+      <a href="#" class="text-ink/65 hover:text-brand transition">Engineering</a>
+    </div>
+
+    <p data-intro="rest" class="mt-6 text-[14px] text-gray">
+      Hiring students?
+      <a href="#company" class="font-medium text-brand hover:text-brand-700 transition">Post a placement on Fixth →</a>
+    </p>
+
+    <ul data-intro="rest" class="mt-10 pt-8 border-t border-ink/[0.06] max-w-[880px] mx-auto flex flex-wrap justify-center gap-x-8 gap-y-3 text-[14px] text-ink/60">
+      <li class="inline-flex items-center gap-2"><svg class="ti text-[16px] text-brand"><use href="#i-verified"/></svg>Open to every discipline</li>
+      <li class="inline-flex items-center gap-2"><svg class="ti text-[16px] text-brand"><use href="#i-verified"/></svg>CAC-verified companies</li>
+      <li class="inline-flex items-center gap-2"><svg class="ti text-[16px] text-brand"><use href="#i-verified"/></svg>One profile, every application</li>
+      <li class="inline-flex items-center gap-2"><svg class="ti text-[16px] text-brand"><use href="#i-verified"/></svg>Live status updates</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ===== TRUST LOGO BAR (marquee) ===== -->
+<section aria-label="Trusted by" class="relative bg-white">
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-10 py-10 sm:py-14">
+    <p class="text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-ink/45">
+      Trusted by
+    </p>
+
+    <div class="mt-6 sm:mt-8 marquee relative overflow-hidden"
+         style="mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);">
+      <ul class="marquee-track flex items-center gap-x-12 sm:gap-x-16 text-navy/55 whitespace-nowrap w-max">
+        <!-- Set 1 -->
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Waterway<span class="text-brand">·</span></li>
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Dephanny's<span class="font-normal text-ink/40"> Venture</span></li>
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Origin<span class="font-normal text-ink/40"> Civil</span></li>
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70 italic">northgate</li>
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">LAGOON<span class="text-brand">.</span></li>
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">◆ Meridian</li>
+        <li class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Beacon/Co</li>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Waterway<span class="text-brand">·</span></li>
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Dephanny's<span class="font-normal text-ink/40"> Venture</span></li>
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Origin<span class="font-normal text-ink/40"> Civil</span></li>
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70 italic">northgate</li>
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">LAGOON<span class="text-brand">.</span></li>
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">◆ Meridian</li>
+        <li aria-hidden="true" class="font-display font-semibold tracking-[-0.02em] text-[18px] sm:text-[20px] opacity-70">Beacon/Co</li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { animation: marquee-scroll 32s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+  </style>
+</section>
+
+<!-- ===== HOW IT WORKS: chains connect on scroll ===== -->
+<section id="how" class="connect relative brand-surface text-white h-[240vh]">
+  <div class="grain sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+    
+    <div class="relative mx-auto w-full max-w-[1100px] px-6 text-center">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85">How it works</p>
+      <h2 class="mt-4 font-display font-semibold tracking-[-0.03em] leading-[1.05] text-[34px] sm:text-[44px] lg:text-[52px]">
+        Bridging <em class="italic text-cyan">the gap</em> between<br class="hidden sm:block" /> students and companies.
+      </h2>
+    </div>
+
+    <!-- Chains -->
+    <div class="relative mx-auto w-full max-w-[1100px] px-6 mt-10 sm:mt-20">
+      <div class="relative z-10 flex items-center justify-between text-[13px] sm:text-[14px] text-white/60 mb-4 sm:mb-6 h-8">
+        <span data-fade-out class="inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-cyan"></span>Students</span>
+        <span data-match class="absolute left-1/2 -translate-x-1/2 inline-flex items-center gap-2 h-8 px-3.5 rounded-lg bg-white text-navy font-semibold opacity-0 scale-90 transition-[opacity,transform] duration-300">
+          <svg class="ti text-[15px] text-brand"><use href="#i-verified"/></svg>Placed.
+        </span>
+        <span data-fade-out class="inline-flex items-center gap-2">Companies<span class="h-1.5 w-1.5 rounded-full bg-cyan"></span></span>
+      </div>
+
+      <svg viewBox="0 0 1033.6 129" class="block w-full h-auto overflow-visible" aria-hidden="true">
+        <ellipse data-halo cx="516.8" cy="64" rx="260" ry="140" fill="#8FD8FF" opacity=".12" filter="url(#soft)"/>
+        <g data-chain-left>
+          <g clip-path="url(#chainL)">
+            <rect x="-10" y="-10" width="540" height="150" fill="url(#fillL)"/>
+            <ellipse data-spark cx="516.8" cy="64" rx="110" ry="80" fill="#BFF4FF" opacity="0" filter="url(#soft)"/>
+          </g>
+        </g>
+        <g data-chain-right>
+          <g clip-path="url(#chainR)">
+            <rect x="507" y="-10" width="540" height="150" fill="url(#fillR)"/>
+            <ellipse data-spark cx="516.8" cy="64" rx="110" ry="80" fill="#BFF4FF" opacity="0" filter="url(#soft)"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Steps -->
+    <ol class="relative mx-auto w-full max-w-[1100px] px-6 mt-10 sm:mt-20 grid gap-4 sm:gap-8 md:grid-cols-3 text-left">
+      <li data-step class="opacity-0 translate-y-4 border-t border-white/25 pt-4 sm:pt-5">
+        <span class="font-display font-semibold text-[14px] text-cyan">01</span>
+        <h3 class="mt-2 font-display font-semibold text-[20px]">Search</h3>
+        <p class="mt-1.5 text-[15px] leading-snug text-white/75 [@media(max-height:720px)]:hidden">Browse verified openings by course and location.</p>
+      </li>
+      <li data-step class="opacity-0 translate-y-4 border-t border-white/25 pt-4 sm:pt-5">
+        <span class="font-display font-semibold text-[14px] text-cyan">02</span>
+        <h3 class="mt-2 font-display font-semibold text-[20px]">Apply</h3>
+        <p class="mt-1.5 text-[15px] leading-snug text-white/75 [@media(max-height:720px)]:hidden">Send your profile and CV, no forms to repeat.</p>
+      </li>
+      <li data-step class="opacity-0 translate-y-4 border-t border-white/25 pt-4 sm:pt-5">
+        <span class="font-display font-semibold text-[14px] text-cyan">03</span>
+        <h3 class="mt-2 font-display font-semibold text-[20px]">Get placed</h3>
+        <p class="mt-1.5 text-[15px] leading-snug text-white/75 [@media(max-height:720px)]:hidden">Track every step until a company says yes.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<script>
+(() => {
+  const sec = document.getElementById('how');
+  const L = sec.querySelector('[data-chain-left]');
+  const R = sec.querySelector('[data-chain-right]');
+  const sparks = sec.querySelectorAll('[data-spark]');
+  const halo = sec.querySelector('[data-halo]');
+  const match = sec.querySelector('[data-match]');
+  const fades = sec.querySelectorAll('[data-fade-out]');
+  const steps = sec.querySelectorAll('[data-step]');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const GAP = 420;
+  let ticking = false;
+
+  function render() {
+    ticking = false;
+    const total = sec.offsetHeight - innerHeight;
+    const p = reduce.matches ? 1 : clamp(-sec.getBoundingClientRect().top / total);
+    const t0 = clamp(p / 0.55);
+    const c = t0 * t0 * (3 - 2 * t0);
+    const off = GAP * (1 - c);
+    L.style.transform = `translateX(${-off}px)`;
+    R.style.transform = `translateX(${off}px)`;
+
+    const joined = clamp((p - 0.5) / 0.1);
+    sparks.forEach((el) => el.setAttribute('opacity', (joined * 0.9).toFixed(3)));
+    halo.setAttribute('opacity', (0.12 + joined * 0.38).toFixed(3));
+    fades.forEach((el) => (el.style.opacity = (1 - joined).toFixed(3)));
+    match.style.opacity = joined.toFixed(3);
+    match.style.transform = `translateX(-50%) scale(${0.9 + 0.1 * joined})`;
+
+    steps.forEach((el, i) => {
+      const t = ease(clamp((p - 0.58 - i * 0.07) / 0.15));
+      el.style.opacity = t.toFixed(3);
+      el.style.transform = `translateY(${(1 - t) * 16}px)`;
+    });
+  }
+
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  reduce.addEventListener('change', render);
+  render();
+})();
+</script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const root = document.documentElement;
+  if (!window.gsap || !window.ScrollTrigger) { root.classList.remove('js-anim'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+  const mm = gsap.matchMedia();
+
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    gsap.set('[data-intro]', { autoAlpha: 1 });
+
+    gsap.timeline({ defaults: { ease: 'power3.out' } })
+      .from('[data-intro="nav"]',    { y: -24, autoAlpha: 0, duration: 0.8 })
+      .from('[data-intro="pill"]',   { y: 14, autoAlpha: 0, duration: 0.7 }, 0.15)
+      .from('[data-line]',           { yPercent: 115, duration: 1.15, stagger: 0.12, ease: 'expo.out' }, 0.3)
+      .from('[data-intro="sub"]',    { y: 16, autoAlpha: 0, duration: 0.8 }, 0.75)
+      .from('[data-intro="search"]', { y: 24, scale: 0.97, autoAlpha: 0, duration: 0.9 }, 0.9)
+      .from('[data-intro="rest"]',   { y: 12, autoAlpha: 0, duration: 0.7, stagger: 0.08 }, 1.1)
+      .from('[data-chain="left"]',   { x: -180, y: 100, autoAlpha: 0, duration: 1.8, ease: 'power2.out' }, 0.2)
+      .from('[data-chain="right"]',  { x: 180, y: -100, autoAlpha: 0, duration: 1.8, ease: 'power2.out' }, 0.35);
+
+    const scrub = { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: 0.6 };
+    gsap.to('[data-hero-content]', { y: 90, opacity: 0.15, ease: 'none', scrollTrigger: scrub });
+
+    if (!matchMedia('(pointer: fine)').matches) return;
+    const hero = document.querySelector('[data-hero]');
+    const ptr = [['left', 22, 14], ['right', 12, 8]].map(([side, dx, dy]) => ({
+      dx, dy,
+      x: gsap.quickTo(`[data-chain="${side}"] [data-ptr]`, 'x', { duration: 1.2, ease: 'power3.out' }),
+      y: gsap.quickTo(`[data-chain="${side}"] [data-ptr]`, 'y', { duration: 1.2, ease: 'power3.out' }),
+    }));
+    const move = (e) => {
+      const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
+      ptr.forEach((p) => { p.x(nx * p.dx); p.y(ny * p.dy); });
+    };
+    hero.addEventListener('pointermove', move);
+    return () => hero.removeEventListener('pointermove', move);
+  });
+
+  mm.add('(prefers-reduced-motion: reduce)', () => { gsap.set('[data-intro]', { autoAlpha: 1 }); });
+})();
+</script>
+<script>
+(() => {
+  const input = document.querySelector('[data-typer]');
+  if (!input || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const base = input.placeholder;
+  const phrases = [
+    'IT support at a fintech in Lagos',
+    'Audit trainee in Abuja',
+    'Lab assistant in Ilorin',
+    'Civil site intern in Port Harcourt',
+    'Newsroom intern in Ibadan',
+  ];
+  let i = 0, n = 0, deleting = false, timer;
+
+  const paused = () => document.activeElement === input || input.value !== '';
+  function tick() {
+    if (paused()) { input.placeholder = base; return; }
+    const text = phrases[i];
+    n += deleting ? -1 : 1;
+    input.placeholder = text.slice(0, n) || '​';
+    let wait = deleting ? 28 : 55 + Math.random() * 45;
+    if (!deleting && n === text.length) { deleting = true; wait = 1900; }
+    else if (deleting && n === 0) { deleting = false; i = (i + 1) % phrases.length; wait = 450; }
+    timer = setTimeout(tick, wait);
+  }
+  input.addEventListener('focus', () => { clearTimeout(timer); input.placeholder = base; });
+  input.addEventListener('blur', () => { if (!input.value) { n = 0; deleting = false; clearTimeout(timer); timer = setTimeout(tick, 600); } });
+  timer = setTimeout(tick, 2200);
+})();
+</script>
+<script>
+(() => {
+  const hero = document.querySelector('[data-hero]');
+  const spot = document.querySelector('[data-spotlight]');
+  if (!hero || !spot || !matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+  let tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+  const step = () => {
+    x += (tx - x) * 0.14; y += (ty - y) * 0.14;
+    spot.style.setProperty('--mx', x.toFixed(1) + 'px');
+    spot.style.setProperty('--my', y.toFixed(1) + 'px');
+    raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.5 ? requestAnimationFrame(step) : 0;
+  };
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    tx = e.clientX - r.left; ty = e.clientY - r.top;
+    if (!spot.classList.contains('is-on')) { x = tx; y = ty; spot.classList.add('is-on'); }
+    if (!raf) raf = requestAnimationFrame(step);
+  });
+  hero.addEventListener('pointerleave', () => spot.classList.remove('is-on'));
+})();
+</script>
+<!-- ===== FOR STUDENTS — connect flow ===== -->
+<section id="students" class="relative bg-navy text-white overflow-hidden">
+  <!-- Ambient glows -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 h-[760px] w-[1100px] rounded-full opacity-[0.22] blur-3xl"
+         style="background: radial-gradient(closest-side, #1E3CE2, transparent 70%)"></div>
+    <div class="absolute bottom-[-200px] left-[8%] h-[420px] w-[420px] rounded-full opacity-[0.18] blur-3xl"
+         style="background: radial-gradient(closest-side, #2D5BFF, transparent 70%)"></div>
+    <div class="absolute bottom-[-180px] right-[6%] h-[420px] w-[420px] rounded-full opacity-[0.18] blur-3xl"
+         style="background: radial-gradient(closest-side, #8FD8FF, transparent 70%)"></div>
+    <!-- Faint grid -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="sgrid" width="56" height="56" patternUnits="userSpaceOnUse"><path d="M56 0H0V56" fill="none" stroke="#8FB3FF" stroke-width="1"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#sgrid)"/>
+    </svg>
+  </div>
+
+  <div class="relative mx-auto max-w-[1240px] px-6 lg:px-10 py-24 lg:py-32">
+    <!-- Header -->
+    <div class="max-w-[900px] mx-auto text-center">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-cyan/90">For students</p>
+      <h2 class="mt-4 font-display font-semibold tracking-[-0.03em] leading-[1.03] text-[36px] sm:text-[48px] lg:text-[60px]">
+        We connect you to <em class="italic text-cyan">real openings</em><br class="hidden sm:block" />
+        from trusted companies.
+      </h2>
+      <p class="mt-5 mx-auto max-w-[620px] text-[17px] leading-[1.55] text-white/65">
+        One verified profile, one tap to apply. Fixth routes it straight to a company that's actively hiring,
+        then keeps you posted at every step.
+      </p>
+    </div>
+
+    <!-- Flow grid -->
+    <div class="relative mt-16 lg:mt-24 grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
+
+      <!-- ===== FLOW A ===== -->
+      <div data-flow class="relative">
+        <!-- Student card -->
+        <article data-flow-item="a1" class="relative ml-0 sm:ml-6 w-[300px] rounded-2xl bg-cyan text-navy p-4 shadow-[0_30px_60px_-30px_rgba(0,0,46,.75)] -rotate-[2deg]">
+          <div class="flex items-center gap-3">
+            <span class="relative inline-block h-11 w-11">
+              <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=128&h=128&fit=crop&crop=faces,center&auto=format&q=80"
+                   alt="" loading="lazy" width="44" height="44"
+                   class="h-11 w-11 rounded-full object-cover ring-2 ring-white" />
+              <span class="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-cyan"></span>
+            </span>
+            <div class="min-w-0">
+              <p class="text-[15px] font-semibold leading-tight">Tunde Bakare</p>
+              <p class="text-[12.5px] text-navy/60 leading-tight mt-0.5">Computer Science · 400L</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Arrow 1 -->
+        <svg class="hidden sm:block absolute left-[72px] sm:left-[96px] top-[68px] w-[120px] h-[120px]" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <path data-draw d="M8 6 C 8 60, 80 60, 92 108" stroke="url(#arrA)" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="4 6"/>
+          <path d="M86 100 L92 110 L100 103" stroke="url(#arrA)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <defs>
+            <linearGradient id="arrA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D5FFFF" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#8FB3FF" stop-opacity=".4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Matching pill -->
+        <div data-flow-item="a2" class="relative mt-10 sm:mt-[80px] ml-auto mr-0 sm:mr-10 w-[300px]">
+          <div class="relative overflow-hidden rounded-full h-14 pl-5 pr-3 flex items-center justify-between ring-1 ring-white/10
+                      bg-[linear-gradient(100deg,#0D21A8_0%,#1530D0_50%,#0D21A8_100%)]
+                      shadow-[0_20px_40px_-20px_rgba(13,33,168,.9)]">
+            <span class="relative text-[14px] font-medium text-white/90 italic font-display">Finding job match…</span>
+            <span class="relative h-9 w-9 rounded-full bg-white/10 inline-flex items-center justify-center">
+              <svg class="h-5 w-5 text-cyan match-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9" stroke-opacity=".2"/>
+                <path d="M21 12a9 9 0 0 0-9-9"/>
+              </svg>
+            </span>
+            <!-- Sheen -->
+            <span aria-hidden="true" class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/15 to-transparent match-sheen"></span>
+          </div>
+        </div>
+
+        <!-- Arrow 2 -->
+        <svg class="hidden sm:block absolute right-[72px] sm:right-[96px] top-[220px] w-[120px] h-[120px] -scale-x-100" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <path data-draw d="M8 6 C 8 60, 80 60, 92 108" stroke="url(#arrA2)" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="4 6"/>
+          <path d="M86 100 L92 110 L100 103" stroke="url(#arrA2)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <defs>
+            <linearGradient id="arrA2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D5FFFF" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#8FB3FF" stop-opacity=".4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Company card -->
+        <article data-flow-item="a3" class="relative mt-10 sm:mt-[80px] ml-0 sm:ml-6 w-[320px] max-w-full rounded-2xl bg-cyan text-navy p-4 shadow-[0_30px_60px_-30px_rgba(0,0,46,.75)] rotate-[1.5deg]">
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-navy text-white text-[12px] font-display font-semibold">D</span>
+            <p class="text-[13.5px] font-semibold">Depahnny's Venture</p>
+            <svg viewBox="0 0 24 24" class="h-4 w-4 text-brand" aria-label="Verified"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+          </div>
+          <p class="mt-3 font-display font-semibold text-[20px] leading-tight">Civil Engineering Intern</p>
+          <p class="mt-1 text-[12.5px] text-navy/60">Lagos, Nigeria · 6-month IT</p>
+        </article>
+      </div>
+
+      <!-- ===== FLOW B (mirrored) ===== -->
+      <div data-flow class="relative lg:mt-16">
+        <!-- Student card -->
+        <article data-flow-item="b1" class="relative ml-auto mr-0 sm:mr-6 w-[300px] rounded-2xl bg-cyan text-navy p-4 shadow-[0_30px_60px_-30px_rgba(0,0,46,.75)] rotate-[2deg]">
+          <div class="flex items-center gap-3">
+            <span class="relative inline-block h-11 w-11">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces,center&auto=format&q=80"
+                   alt="" loading="lazy" width="44" height="44"
+                   class="h-11 w-11 rounded-full object-cover ring-2 ring-white" />
+              <span class="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-cyan"></span>
+            </span>
+            <div class="min-w-0">
+              <p class="text-[15px] font-semibold leading-tight">Chiamaka Obi</p>
+              <p class="text-[12.5px] text-navy/60 leading-tight mt-0.5">Accounting · 300L</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Arrow 1 (mirrored) -->
+        <svg class="hidden sm:block absolute right-[72px] sm:right-[96px] top-[68px] w-[120px] h-[120px] -scale-x-100" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <path data-draw d="M8 6 C 8 60, 80 60, 92 108" stroke="url(#arrB)" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="4 6"/>
+          <path d="M86 100 L92 110 L100 103" stroke="url(#arrB)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <defs>
+            <linearGradient id="arrB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D5FFFF" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#8FB3FF" stop-opacity=".4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Matching pill -->
+        <div data-flow-item="b2" class="relative mt-10 sm:mt-[80px] mr-auto ml-0 sm:ml-10 w-[300px]">
+          <div class="relative overflow-hidden rounded-full h-14 pl-5 pr-3 flex items-center justify-between ring-1 ring-white/10
+                      bg-[linear-gradient(100deg,#0D21A8_0%,#1530D0_50%,#0D21A8_100%)]
+                      shadow-[0_20px_40px_-20px_rgba(13,33,168,.9)]">
+            <span class="relative text-[14px] font-medium text-white/90 italic font-display">Finding job match…</span>
+            <span class="relative h-9 w-9 rounded-full bg-white/10 inline-flex items-center justify-center">
+              <svg class="h-5 w-5 text-cyan match-spin match-spin-alt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9" stroke-opacity=".2"/>
+                <path d="M21 12a9 9 0 0 0-9-9"/>
+              </svg>
+            </span>
+            <span aria-hidden="true" class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/15 to-transparent match-sheen match-sheen-alt"></span>
+          </div>
+        </div>
+
+        <!-- Arrow 2 -->
+        <svg class="hidden sm:block absolute left-[72px] sm:left-[96px] top-[220px] w-[120px] h-[120px]" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <path data-draw d="M8 6 C 8 60, 80 60, 92 108" stroke="url(#arrB2)" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="4 6"/>
+          <path d="M86 100 L92 110 L100 103" stroke="url(#arrB2)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <defs>
+            <linearGradient id="arrB2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D5FFFF" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#8FB3FF" stop-opacity=".4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Company card -->
+        <article data-flow-item="b3" class="relative mt-10 sm:mt-[80px] ml-auto mr-0 sm:mr-6 w-[320px] max-w-full rounded-2xl bg-cyan text-navy p-4 shadow-[0_30px_60px_-30px_rgba(0,0,46,.75)] -rotate-[1.5deg]">
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-white ring-1 ring-navy/10">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0F35DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M3 21V9l5-5 5 5v12z"/><path d="M13 9h8v12h-8"/><path d="M8 10v.01M8 14v.01M8 18v.01M16 13v.01M16 17v.01"/>
+              </svg>
+            </span>
+            <p class="text-[13.5px] font-semibold">KPMG Nigeria</p>
+            <svg viewBox="0 0 24 24" class="h-4 w-4 text-brand" aria-label="Verified"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+          </div>
+          <p class="mt-3 font-display font-semibold text-[20px] leading-tight">Audit Trainee</p>
+          <p class="mt-1 text-[12.5px] text-navy/60">Abuja, Nigeria · 4-month IT</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="relative mt-20 lg:mt-28 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#start" class="inline-flex items-center gap-2 h-12 px-6 rounded-lg bg-white text-navy text-[15px] font-semibold hover:bg-cyan transition-colors">
+        Create your free profile <svg class="ti text-[16px]"><use href="#i-arrow"/></svg>
+      </a>
+      <a href="#opportunities" class="inline-flex items-center gap-2 h-12 px-5 text-[15px] font-semibold text-white/80 hover:text-white transition">
+        Browse all openings
+      </a>
+    </div>
+  </div>
+
+  <style>
+    @keyframes match-spin { to { transform: rotate(360deg); } }
+    .match-spin { animation: match-spin 1.2s linear infinite; transform-origin: 50% 50%; }
+    .match-spin-alt { animation-direction: reverse; animation-duration: 1.6s; }
+    @keyframes match-sheen { 0% { transform: translateX(0); } 100% { transform: translateX(600%); } }
+    .match-sheen { animation: match-sheen 2.6s ease-in-out infinite; }
+    .match-sheen-alt { animation-delay: 1.1s; }
+    @media (prefers-reduced-motion: reduce) {
+      .match-spin, .match-sheen { animation: none; }
+    }
+    /* Draw-in only when JS is active; otherwise lines are fully drawn. */
+    .js-anim [data-draw] { stroke-dasharray: 220; stroke-dashoffset: 220; }
+    .js-anim .draw-in [data-draw] { animation: draw 1.1s ease-out forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    /* Hidden only when JS is active; without JS the cards remain visible. */
+    .js-anim [data-flow-item] { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .js-anim [data-flow-item].in { opacity: 1; transform: none; }
+  </style>
+  <script>
+    (() => {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const flow = e.target;
+          flow.classList.add('draw-in');
+          flow.querySelectorAll('[data-flow-item]').forEach((el, i) => {
+            setTimeout(() => el.classList.add('in'), i * 260);
+          });
+          io.unobserve(flow);
+        }
+      }, { threshold: 0.25 });
+      document.querySelectorAll('#students [data-flow]').forEach((f) => io.observe(f));
+    })();
+  </script>
+</section>
+
+<!-- ===== FOR COMPANIES ===== -->
+<section id="companies" class="relative bg-paper overflow-hidden">
+  <!-- Subtle brand wash -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    <div class="absolute -top-32 right-[-10%] h-[520px] w-[520px] rounded-full opacity-[0.08] blur-3xl"
+         style="background: radial-gradient(closest-side, #0F35DB, transparent 70%)"></div>
+    <div class="absolute bottom-[-180px] left-[-10%] h-[480px] w-[480px] rounded-full opacity-[0.06] blur-3xl"
+         style="background: radial-gradient(closest-side, #00002E, transparent 70%)"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1240px] px-6 lg:px-10 py-24 lg:py-32">
+
+    <!-- Header -->
+    <div class="text-center max-w-[920px] mx-auto mb-14 lg:mb-20">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand">For companies</p>
+      <h2 class="mt-4 font-display font-semibold text-navy tracking-[-0.03em] leading-[1.02] text-[40px] sm:text-[54px] lg:text-[68px]">
+        A hiring pipeline<br class="hidden sm:block" />
+        that <em class="italic text-brand">runs itself.</em>
+      </h2>
+      <p class="mt-6 mx-auto max-w-[560px] text-[17px] leading-[1.55] text-ink/60">
+        Post a listing in two minutes. Watch verified students move from applied to hired —
+        one board, zero spreadsheets.
+      </p>
+    </div>
+
+    <!-- Pipeline board -->
+    <div class="relative rounded-3xl bg-white ring-1 ring-ink/[0.07] shadow-[0_1px_2px_rgba(0,0,46,.04),0_60px_120px_-40px_rgba(0,0,46,.22)] overflow-hidden">
+
+      <!-- Board header -->
+      <div class="flex flex-wrap items-center justify-between gap-3 p-5 sm:p-6 border-b border-line bg-paper/40">
+        <div class="flex items-center gap-3 min-w-0">
+          <span class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-navy text-white">
+            <svg class="ti text-[18px]"><use href="#i-briefcase"/></svg>
+          </span>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <p class="font-display font-semibold text-navy text-[16px] truncate">Mechanical SIWES Trainee</p>
+              <span class="inline-flex items-center gap-1.5 h-5 px-1.5 rounded bg-emerald-50 text-emerald-700 text-[10.5px] font-semibold">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Live
+              </span>
+            </div>
+            <p class="text-[12px] text-ink/50 truncate">Waterway Steel · Abuja · 6-month SIWES</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 text-[12px] text-ink/55">
+          <span class="inline-flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>24 applicants</span>
+          <span class="hidden sm:inline-flex items-center gap-1.5"><svg class="ti text-[13px]"><use href="#i-clock"/></svg>Avg. 2d to shortlist</span>
+        </div>
+      </div>
+
+      <!-- Kanban columns -->
+      <div class="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-line">
+
+        <!-- APPLIED -->
+        <div class="p-4 sm:p-5">
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-[11.5px] font-semibold uppercase tracking-wider text-ink/50">Applied</p>
+            <span class="inline-flex items-center justify-center h-5 px-1.5 rounded bg-ink/5 text-ink/60 text-[11px] font-semibold">14</span>
+          </div>
+          <ul class="space-y-2.5">
+            <li class="group relative rounded-xl bg-paper/60 border border-line/80 p-3 hover:border-brand/40 hover:bg-white transition">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-navy to-brand text-white text-[11px] font-display font-semibold inline-flex items-center justify-center">AO</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Adeola Okafor</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Mechanical · 400L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 flex items-center justify-between">
+                <span class="inline-flex items-center h-5 px-1.5 rounded bg-brand-50 text-brand text-[10.5px] font-semibold">94% match</span>
+                <span class="text-[10.5px] text-ink/40">UNILAG</span>
+              </div>
+            </li>
+            <li class="rounded-xl bg-paper/60 border border-line/80 p-3">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-brand to-brand-800 text-white text-[11px] font-display font-semibold inline-flex items-center justify-center">BI</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Bello Ibrahim</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Mechatronics · 400L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 flex items-center justify-between">
+                <span class="inline-flex items-center h-5 px-1.5 rounded bg-brand-50 text-brand text-[10.5px] font-semibold">88% match</span>
+                <span class="text-[10.5px] text-ink/40">ABU Zaria</span>
+              </div>
+            </li>
+            <li class="rounded-xl border border-dashed border-line/80 p-3 text-[11.5px] text-ink/45 text-center">+ 12 more</li>
+          </ul>
+        </div>
+
+        <!-- SHORTLISTED -->
+        <div class="p-4 sm:p-5 bg-brand-50/30">
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-[11.5px] font-semibold uppercase tracking-wider text-brand">Shortlisted</p>
+            <span class="inline-flex items-center justify-center h-5 px-1.5 rounded bg-brand text-white text-[11px] font-semibold">6</span>
+          </div>
+          <ul class="space-y-2.5">
+            <li class="relative rounded-xl bg-white ring-1 ring-brand/15 p-3 shadow-[0_8px_20px_-10px_rgba(15,53,219,.25)]">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-cyan to-brand-100 text-navy text-[11px] font-display font-semibold inline-flex items-center justify-center">CU</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Chiamaka Udo</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Mechanical · 300L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 flex items-center justify-between">
+                <span class="inline-flex items-center h-5 px-1.5 rounded bg-brand-50 text-brand text-[10.5px] font-semibold">91% match</span>
+                <span class="text-[10.5px] text-ink/40">UNN</span>
+              </div>
+            </li>
+            <li class="rounded-xl bg-white ring-1 ring-brand/15 p-3 shadow-[0_8px_20px_-10px_rgba(15,53,219,.25)]">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-brand-700 to-navy text-white text-[11px] font-display font-semibold inline-flex items-center justify-center">DO</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Daniel Oyedepo</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Production · 400L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 flex items-center justify-between">
+                <span class="inline-flex items-center h-5 px-1.5 rounded bg-brand-50 text-brand text-[10.5px] font-semibold">85% match</span>
+                <span class="text-[10.5px] text-ink/40">OAU</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- INTERVIEWING -->
+        <div class="p-4 sm:p-5">
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-[11.5px] font-semibold uppercase tracking-wider text-ink/50">Interviewing</p>
+            <span class="inline-flex items-center justify-center h-5 px-1.5 rounded bg-ink/5 text-ink/60 text-[11px] font-semibold">3</span>
+          </div>
+          <ul class="space-y-2.5">
+            <li class="rounded-xl bg-paper/60 border border-line/80 p-3">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-navy to-brand text-white text-[11px] font-display font-semibold inline-flex items-center justify-center">EA</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Emeka Adewale</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Mechanical · 400L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 inline-flex items-center gap-1.5 h-5 px-1.5 rounded bg-amber-50 text-amber-700 text-[10.5px] font-semibold">
+                <svg class="ti text-[12px]"><use href="#i-clock"/></svg>Thu, 2:00 PM
+              </div>
+            </li>
+            <li class="rounded-xl bg-paper/60 border border-line/80 p-3">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-brand to-navy text-white text-[11px] font-display font-semibold inline-flex items-center justify-center">FN</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Funmi Nwosu</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Mechatronics · 400L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 inline-flex items-center gap-1.5 h-5 px-1.5 rounded bg-amber-50 text-amber-700 text-[10.5px] font-semibold">
+                <svg class="ti text-[12px]"><use href="#i-clock"/></svg>Fri, 11:00 AM
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HIRED -->
+        <div class="p-4 sm:p-5 bg-gradient-to-b from-emerald-50/50 to-transparent">
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-[11.5px] font-semibold uppercase tracking-wider text-emerald-700">Hired</p>
+            <span class="inline-flex items-center justify-center h-5 px-1.5 rounded bg-emerald-600 text-white text-[11px] font-semibold">1</span>
+          </div>
+          <ul class="space-y-2.5">
+            <li class="relative rounded-xl bg-white ring-1 ring-emerald-200 p-3 shadow-[0_8px_20px_-10px_rgba(16,185,129,.3)]">
+              <div class="flex items-center gap-2.5">
+                <span class="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white text-[11px] font-display font-semibold inline-flex items-center justify-center">TB</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[12.5px] font-semibold text-navy truncate">Tunde Bakare</p>
+                  <p class="text-[10.5px] text-ink/50 truncate">Mechanical · 400L</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-brand shrink-0"><path fill="currentColor" d="M12 1l2.4 2L18 2.4 18.6 6l3 .6-.6 3.6L24 12l-2 2.4.6 3.6-3.6.6L18 22l-3.6-.6L12 24l-2.4-2L6 22.6 5.4 19l-3.6-.6.6-3.6L0 12l2-2.4L1.4 6 5 5.4 6 2l3.6.6z"/><path fill="#fff" d="M10.5 15.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
+              </div>
+              <div class="mt-2 inline-flex items-center gap-1.5 h-5 px-1.5 rounded bg-emerald-100 text-emerald-700 text-[10.5px] font-semibold">
+                <svg class="ti text-[12px]"><use href="#i-check"/></svg>Offer accepted
+              </div>
+            </li>
+            <li class="rounded-xl border border-dashed border-emerald-200 bg-white/40 p-3 text-[11.5px] text-emerald-700/70 text-center">Starts Mon</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Board footer: live indicator -->
+      <div class="flex items-center justify-between px-5 py-4 border-t border-line bg-paper/40">
+        <div class="inline-flex items-center gap-2 text-[12px] text-ink/55">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70 animate-ping"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          Receiving new applications
+        </div>
+        <a href="#" class="text-[12px] font-semibold text-brand hover:text-brand-700">Open board →</a>
+      </div>
+    </div>
+
+    <!-- Proof stats row -->
+    <div class="mt-10 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-2xl bg-white ring-1 ring-ink/[0.06] p-6">
+        <p class="font-display font-semibold text-navy text-[36px] leading-none tracking-[-0.02em]">100%</p>
+        <p class="mt-2 text-[13.5px] font-semibold text-navy">CAC verified</p>
+        <p class="mt-1 text-[12.5px] text-ink/55 leading-snug">Every company passes CAC verification before posting a listing.</p>
+      </div>
+      <div class="rounded-2xl bg-white ring-1 ring-ink/[0.06] p-6">
+        <p class="font-display font-semibold text-navy text-[36px] leading-none tracking-[-0.02em]">2 days</p>
+        <p class="mt-2 text-[13.5px] font-semibold text-navy">Average time to shortlist</p>
+        <p class="mt-1 text-[12.5px] text-ink/55 leading-snug">Fully structured applications mean no CV wrangling.</p>
+      </div>
+      <div class="rounded-2xl bg-white ring-1 ring-ink/[0.06] p-6">
+        <p class="font-display font-semibold text-navy text-[36px] leading-none tracking-[-0.02em]">0 forms</p>
+        <p class="mt-2 text-[13.5px] font-semibold text-navy">For your inbox</p>
+        <p class="mt-1 text-[12.5px] text-ink/55 leading-snug">Review, shortlist, offer — all without leaving Fixth.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="relative mt-20 lg:mt-24 rounded-3xl brand-surface grain text-white px-8 py-12 lg:px-14 lg:py-16 overflow-hidden isolate">
+
+      <!-- Hairline accent corner -->
+      <svg aria-hidden="true" class="absolute right-6 top-6 h-16 w-16 opacity-60" viewBox="0 0 60 60" fill="none" stroke="#D5FFFF" stroke-width="1">
+        <path d="M0 1h30M1 0v30"/><circle cx="30" cy="30" r="2" fill="#D5FFFF"/>
+      </svg>
+      <svg aria-hidden="true" class="absolute left-6 bottom-6 h-16 w-16 opacity-60 rotate-180" viewBox="0 0 60 60" fill="none" stroke="#D5FFFF" stroke-width="1">
+        <path d="M0 1h30M1 0v30"/><circle cx="30" cy="30" r="2" fill="#D5FFFF"/>
+      </svg>
+
+      <div class="relative grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7">
+          <!-- Eyebrow -->
+          <div class="inline-flex items-center gap-2 h-7 pl-1 pr-3 rounded-full bg-white/[0.08] ring-1 ring-white/15 text-[12px] text-cyan/90">
+            <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-cyan/20">
+              <svg class="ti text-[12px] text-cyan"><use href="#i-sparkle"/></svg>
+            </span>
+            For companies
+          </div>
+          <h3 class="mt-4 font-display font-semibold tracking-[-0.02em] text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.08]">
+            Start hiring on Fixth<br class="sm:hidden"/>
+            <em class="italic text-cyan">in minutes, not weeks.</em>
+          </h3>
+          <p class="mt-3 text-white/70 text-[15px] max-w-[520px]">Verify your company once. Post placements. Review structured applications in one place — no spreadsheets, no inbox digging.</p>
+
+          <!-- Mini value row -->
+          <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-white/70">
+            <li class="inline-flex items-center gap-1.5"><svg class="ti text-[14px] text-cyan"><use href="#i-check"/></svg>Unlimited listings</li>
+            <li class="inline-flex items-center gap-1.5"><svg class="ti text-[14px] text-cyan"><use href="#i-check"/></svg>CAC verification included</li>
+            <li class="inline-flex items-center gap-1.5"><svg class="ti text-[14px] text-cyan"><use href="#i-check"/></svg>Pre-screened applicants</li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col lg:items-end gap-3 lg:gap-4">
+          <a href="#company" class="group inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-white text-navy text-[15px] font-semibold hover:bg-cyan transition-colors shadow-[0_12px_28px_-10px_rgba(213,255,255,.35)]">
+            Post a placement
+            <svg class="ti text-[16px] group-hover:translate-x-0.5 transition"><use href="#i-arrow"/></svg>
+          </a>
+          <a href="#demo" class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl ring-1 ring-white/20 text-white/90 text-[15px] font-semibold hover:bg-white/5 transition">
+            Book a demo
+          </a>
+          <p class="hidden lg:block text-right text-[11.5px] text-white/50">No credit card required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="relative bg-white overflow-hidden">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 h-[360px] w-[720px] rounded-full opacity-[0.05] blur-3xl"
+         style="background: radial-gradient(closest-side, #0F35DB, transparent 70%)"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1100px] px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+    <!-- Left: title + help -->
+    <aside class="lg:col-span-4 lg:sticky lg:top-24 self-start">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand">FAQ</p>
+      <h2 class="mt-4 font-display font-semibold text-navy tracking-[-0.03em] leading-[1.03] text-[36px] lg:text-[46px]">
+        Questions,<br/><em class="italic text-brand">answered.</em>
+      </h2>
+      <p class="mt-5 text-[16px] leading-[1.55] text-ink/60 max-w-[360px]">
+        Still unsure? Drop us a line and a real person on the Fixth team gets back within a day.
+      </p>
+      <div class="mt-7 rounded-2xl bg-paper/70 border border-line p-5">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-brand text-white">
+            <svg class="ti text-[18px]"><use href="#i-bell"/></svg>
+          </span>
+          <div class="min-w-0">
+            <p class="text-[14px] font-semibold text-navy">Can't find your answer?</p>
+            <p class="text-[12px] text-ink/55">We reply to every message.</p>
+          </div>
+        </div>
+        <a href="mailto:hello@fixth.ng" class="mt-4 inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-navy text-white text-[14px] font-semibold hover:bg-ink transition">
+          hello@fixth.ng <svg class="ti text-[15px]"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Right: items -->
+    <div class="lg:col-span-8">
+      <ul class="divide-y divide-line" data-faq>
+
+        <li>
+          <details class="group py-5" open>
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                Do I need a school email to sign up?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              A school email speeds verification up, but it isn't required. If you don't have one, sign up with a personal email and upload your student ID — our team manually verifies you, usually within a day.
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="group py-5">
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                Is Fixth really free for students?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              Yes. Creating a profile, applying to any opening, and tracking your applications is free. There is no premium tier for students.
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="group py-5">
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                What makes a company "verified"?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              Every company submits a valid CAC registration number and completes a company profile. Our admin team reviews each one before any listing becomes visible to students.
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="group py-5">
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                Which courses can use Fixth?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              Fixth is open to every course. Computer Science, Accounting, Microbiology, Mass Communication, Business Administration, Engineering — if a company lists it, you can apply.
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="group py-5">
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                How do I know a company has seen my application?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              Your dashboard shows a live status for every application — Submitted, Viewed, Shortlisted, Rejected or Accepted. You also get a notification the moment a company updates it.
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="group py-5">
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                Can I apply to opportunities outside my discipline?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              Companies choose the eligible disciplines for each listing. Where a listing is open, you can apply; where a discipline restriction exists, Fixth will tell you upfront rather than wasting your time.
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="group py-5">
+            <summary class="list-none flex items-center justify-between gap-6 cursor-pointer">
+              <h3 class="font-display font-semibold text-navy text-[18px] sm:text-[19px] tracking-[-0.01em]">
+                How is my data protected?
+              </h3>
+              <span class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-paper border border-line text-ink/60 group-open:bg-brand group-open:text-white group-open:border-brand transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="pt-3 pr-14 text-[15px] leading-[1.6] text-ink/65">
+              Passwords are encrypted, CVs and IDs are stored on secure, access-controlled storage, and only verified companies you apply to can see your profile. You can delete your account and data at any time.
+            </div>
+          </details>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Accordion: open one at a time
+    (() => {
+      const list = document.querySelector('[data-faq]');
+      if (!list) return;
+      const items = list.querySelectorAll('details');
+      items.forEach((d) => d.addEventListener('toggle', () => {
+        if (d.open) items.forEach((o) => { if (o !== d) o.open = false; });
+      }));
+    })();
+  </script>
+</section>
+
+<!-- ===== FINAL CTA + FOOTER ===== -->
+<footer class="relative bg-navy text-white overflow-hidden">
+
+  <!-- Clean depth: single top glow + soft top hairline -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    <!-- Top hairline + fade -->
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+    <!-- Single ambient glow, centered top -->
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[900px] rounded-full opacity-[0.18] blur-3xl"
+         style="background: radial-gradient(closest-side, #2D5BFF, transparent 70%)"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1240px] px-6 lg:px-10 pt-20 lg:pt-24 pb-8">
+
+    <!-- Top: tagline + newsletter -->
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end pb-14 border-b border-white/10">
+      <div class="lg:col-span-7">
+        <p class="text-[12px] font-semibold uppercase tracking-[0.18em] text-cyan/80">Stay in the loop</p>
+        <h3 class="mt-4 font-display font-semibold tracking-[-0.025em] leading-[1.05] text-[30px] sm:text-[38px] lg:text-[44px] max-w-[560px]">
+          Fresh placements, <em class="italic text-cyan">every week.</em>
+        </h3>
+        <p class="mt-3 text-white/60 text-[14.5px] max-w-[480px]">
+          One short email with new openings from verified companies. No noise, no spam, unsubscribe in a click.
+        </p>
+      </div>
+      <div class="lg:col-span-5">
+        <form action="#" onsubmit="event.preventDefault()" class="relative">
+          <label for="nl" class="sr-only">Email</label>
+          <input id="nl" type="email" placeholder="you@school.edu.ng"
+                 class="w-full h-14 pl-5 pr-[146px] rounded-full bg-white/[0.06] ring-1 ring-white/15 placeholder:text-white/35 text-[14.5px] text-white outline-none focus:ring-cyan/40 transition" />
+          <button class="absolute top-1.5 right-1.5 inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-navy text-[14px] font-semibold hover:bg-cyan transition">
+            Subscribe <svg class="ti text-[15px]"><use href="#i-arrow"/></svg>
+          </button>
+        </form>
+        <p class="mt-2.5 pl-1 text-[11.5px] text-white/40">We'll never share your email.</p>
+      </div>
+    </div>
+
+    <!-- Mid: link grid -->
+    <div class="grid gap-10 lg:gap-12 grid-cols-2 md:grid-cols-5 py-14">
+      <div class="col-span-2 md:col-span-2 max-w-[320px]">
+        <svg viewBox="0 0 421 173" class="h-7 w-auto text-cyan" fill="currentColor" aria-hidden="true">
+          <path d="M49.3973 34.6109H68.6911V69.2127L51.5605 69.2885C42.1004 69.2885 34.4298 77.0163 34.4298 86.5471C34.4298 96.0778 42.1004 103.805 51.5605 103.805L68.6911 103.881V138.483H49.3973C44.1502 138.483 39.0896 137.656 34.3455 136.125V173H0V81.3446H0.0932668C1.64055 55.2692 23.1238 34.6018 49.3883 34.6018L49.3973 34.6109ZM272.77 36.884C277.514 35.3536 282.572 34.5278 287.82 34.5278H307.115V69.1296L289.985 69.2036C280.525 69.2036 272.853 76.9316 272.853 86.4621C272.853 95.9929 280.525 103.72 289.985 103.72L307.115 103.796V138.398H287.82L287.811 138.407C261.547 138.407 240.063 117.74 238.515 91.6644H238.425V0.0108419H272.77V36.884ZM96.6802 47.7946C106.14 47.7949 113.81 55.5227 113.811 65.0529V138.398H79.4742V65.0529H79.5495C79.5498 55.5225 87.2202 47.7946 96.6802 47.7946ZM227.65 69.1945L210.378 69.2325L210.22 69.3916C200.844 69.4762 193.266 77.1288 193.247 86.556V86.5939C193.247 96.0965 200.917 103.796 210.378 103.796C210.899 103.796 211.414 103.767 211.926 103.72L227.583 103.796V138.398H208.141L207.907 138.322C195.69 137.693 184.599 132.792 176.07 125.083C167.551 132.792 156.451 137.693 144.232 138.322L143.999 138.398L124.612 138.275V103.684L140.214 103.731C140.718 103.778 141.24 103.805 141.762 103.805C151.222 103.805 158.893 96.1056 158.893 86.603V86.565C158.874 77.1286 151.296 69.4852 141.92 69.4007L141.762 69.2415L124.547 69.3157V34.7246H142.069L142.098 34.7337L142.107 34.7246C155.164 34.8655 167.057 39.8792 176.079 48.0294C185.102 39.879 196.994 34.8655 210.053 34.7246L210.071 34.7156L227.65 34.5927V69.1945ZM352.244 36.9491C356.942 35.4374 361.947 34.6025 367.137 34.5837H371.714C398.947 34.6588 421 56.8936 421 84.3117V138.398H386.636V86.491H386.561C386.561 76.9793 378.91 69.2608 369.458 69.2415C360.007 69.2604 352.356 76.9791 352.356 86.491H352.28V138.398H317.917V0.00903488H352.244V36.9491ZM96.689 0.0108419C106.149 0.0109907 113.82 7.73865 113.82 17.2693C113.819 26.7996 106.149 34.5276 96.689 34.5278C87.2292 34.5278 79.5588 26.7996 79.5585 17.2693C79.5585 7.73855 87.2288 0.0108419 96.689 0.0108419ZM317.917 0.00903488H317.908L317.917 0V0.00903488Z"/>
+        </svg>
+        <p class="mt-4 text-[13.5px] text-white/55 leading-[1.6] max-w-[280px]">
+          The trusted way to find SIWES, IT and internship placements in Nigeria.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.14em] font-semibold text-white/40">Students</p>
+        <ul class="mt-5 space-y-3 text-[13.5px] text-white/80">
+          <li><a href="#start" class="hover:text-cyan transition">Create profile</a></li>
+          <li><a href="#opportunities" class="hover:text-cyan transition">Browse openings</a></li>
+          <li><a href="#how" class="hover:text-cyan transition">How it works</a></li>
+          <li><a href="#faq" class="hover:text-cyan transition">Help & FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.14em] font-semibold text-white/40">Companies</p>
+        <ul class="mt-5 space-y-3 text-[13.5px] text-white/80">
+          <li><a href="#company" class="hover:text-cyan transition">Post a placement</a></li>
+          <li><a href="#companies" class="hover:text-cyan transition">For companies</a></li>
+          <li><a href="#demo" class="hover:text-cyan transition">Book a demo</a></li>
+          <li><a href="#login" class="hover:text-cyan transition">Sign in</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.14em] font-semibold text-white/40">Fixth</p>
+        <ul class="mt-5 space-y-3 text-[13.5px] text-white/80">
+          <li><a href="#about" class="hover:text-cyan transition">About</a></li>
+          <li><a href="#privacy" class="hover:text-cyan transition">Privacy</a></li>
+          <li><a href="#terms" class="hover:text-cyan transition">Terms</a></li>
+          <li><a href="mailto:hello@fixth.ng" class="hover:text-cyan transition">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Oversized wordmark divider -->
+    <div class="relative overflow-hidden -mb-2">
+      <svg viewBox="0 0 421 173" aria-hidden="true" class="w-full h-auto block text-white/[0.045]" fill="currentColor" preserveAspectRatio="xMidYMid meet">
+        <path d="M49.3973 34.6109H68.6911V69.2127L51.5605 69.2885C42.1004 69.2885 34.4298 77.0163 34.4298 86.5471C34.4298 96.0778 42.1004 103.805 51.5605 103.805L68.6911 103.881V138.483H49.3973C44.1502 138.483 39.0896 137.656 34.3455 136.125V173H0V81.3446H0.0932668C1.64055 55.2692 23.1238 34.6018 49.3883 34.6018L49.3973 34.6109ZM272.77 36.884C277.514 35.3536 282.572 34.5278 287.82 34.5278H307.115V69.1296L289.985 69.2036C280.525 69.2036 272.853 76.9316 272.853 86.4621C272.853 95.9929 280.525 103.72 289.985 103.72L307.115 103.796V138.398H287.82L287.811 138.407C261.547 138.407 240.063 117.74 238.515 91.6644H238.425V0.0108419H272.77V36.884ZM96.6802 47.7946C106.14 47.7949 113.81 55.5227 113.811 65.0529V138.398H79.4742V65.0529H79.5495C79.5498 55.5225 87.2202 47.7946 96.6802 47.7946ZM227.65 69.1945L210.378 69.2325L210.22 69.3916C200.844 69.4762 193.266 77.1288 193.247 86.556V86.5939C193.247 96.0965 200.917 103.796 210.378 103.796C210.899 103.796 211.414 103.767 211.926 103.72L227.583 103.796V138.398H208.141L207.907 138.322C195.69 137.693 184.599 132.792 176.07 125.083C167.551 132.792 156.451 137.693 144.232 138.322L143.999 138.398L124.612 138.275V103.684L140.214 103.731C140.718 103.778 141.24 103.805 141.762 103.805C151.222 103.805 158.893 96.1056 158.893 86.603V86.565C158.874 77.1286 151.296 69.4852 141.92 69.4007L141.762 69.2415L124.547 69.3157V34.7246H142.069L142.098 34.7337L142.107 34.7246C155.164 34.8655 167.057 39.8792 176.079 48.0294C185.102 39.879 196.994 34.8655 210.053 34.7246L210.071 34.7156L227.65 34.5927V69.1945ZM352.244 36.9491C356.942 35.4374 361.947 34.6025 367.137 34.5837H371.714C398.947 34.6588 421 56.8936 421 84.3117V138.398H386.636V86.491H386.561C386.561 76.9793 378.91 69.2608 369.458 69.2415C360.007 69.2604 352.356 76.9791 352.356 86.491H352.28V138.398H317.917V0.00903488H352.244V36.9491ZM96.689 0.0108419C106.149 0.0109907 113.82 7.73865 113.82 17.2693C113.819 26.7996 106.149 34.5276 96.689 34.5278C87.2292 34.5278 79.5588 26.7996 79.5585 17.2693C79.5585 7.73855 87.2288 0.0108419 96.689 0.0108419ZM317.917 0.00903488H317.908L317.917 0V0.00903488Z"/>
+      </svg>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="relative pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-white/50">
+      <p>© 2026 Fixth Technologies · Made in Lagos.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" aria-label="Twitter" class="hover:text-cyan transition">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M18.244 2H21l-6.49 7.41L22 22h-6.828l-4.76-6.228L4.8 22H2l6.953-7.94L2 2h6.93l4.3 5.69L18.244 2zm-2.4 18h1.896L7.26 4H5.26l10.584 16z"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-cyan transition">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H18V15.5c0-1.3-.03-2.98-1.82-2.98-1.82 0-2.1 1.42-2.1 2.88V21H10V9z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram" class="hover:text-cyan transition">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- (legacy students dashboard removed) -->
+<template id="students-legacy">
+  <!-- Soft brand wash behind the composition -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    <div class="absolute -top-24 -right-24 h-[520px] w-[520px] rounded-full opacity-[0.06]"
+         style="background: radial-gradient(closest-side, #0F35DB, transparent 70%)"></div>
+    <div class="absolute bottom-0 -left-32 h-[420px] w-[420px] rounded-full opacity-[0.05]"
+         style="background: radial-gradient(closest-side, #0F35DB, transparent 70%)"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1200px] px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+    <!-- Left: pitch -->
+    <div class="lg:col-span-5">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand">For students</p>
+      <h2 class="mt-4 font-display font-semibold text-navy tracking-[-0.03em] leading-[1.05] text-[36px] sm:text-[44px] lg:text-[52px]">
+        One profile.<br/>
+        <em class="italic text-brand">Every</em> application.
+      </h2>
+      <p class="mt-5 max-w-[460px] text-[17px] leading-[1.55] text-ink/65">
+        Build your profile once, upload your CV, and apply to any opening in a tap.
+        Watch each application move from <span class="font-medium text-navy">submitted</span>
+        to <span class="font-medium text-navy">shortlisted</span>, right from your dashboard.
+      </p>
+
+      <ul class="mt-8 space-y-4">
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex items-center justify-center h-6 w-6 rounded-full bg-brand-50 text-brand">
+            <svg class="ti text-[14px]"><use href="#i-check"/></svg>
+          </span>
+          <div>
+            <p class="text-[15px] font-semibold text-navy">Verified openings only</p>
+            <p class="text-[14px] text-ink/60">Every company passes CAC verification before posting.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex items-center justify-center h-6 w-6 rounded-full bg-brand-50 text-brand">
+            <svg class="ti text-[14px]"><use href="#i-check"/></svg>
+          </span>
+          <div>
+            <p class="text-[15px] font-semibold text-navy">No forms to repeat</p>
+            <p class="text-[14px] text-ink/60">Apply with your Fixth profile and the latest CV on file.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex items-center justify-center h-6 w-6 rounded-full bg-brand-50 text-brand">
+            <svg class="ti text-[14px]"><use href="#i-check"/></svg>
+          </span>
+          <div>
+            <p class="text-[15px] font-semibold text-navy">Live status updates</p>
+            <p class="text-[14px] text-ink/60">Know the moment a company views, shortlists, or offers.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a href="#start" class="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-brand text-white text-[15px] font-semibold hover:bg-brand-700 transition-colors">
+          Create a free profile <svg class="ti text-[16px]"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="#opportunities" class="inline-flex items-center gap-2 h-11 px-4 text-[15px] font-semibold text-brand hover:text-brand-700 transition-colors">
+          Browse openings
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: dashboard mock -->
+    <div class="lg:col-span-7 relative">
+      <!-- Decorative glow -->
+      <div aria-hidden="true" class="absolute -inset-6 rounded-[32px] opacity-60 blur-2xl"
+           style="background: radial-gradient(60% 60% at 50% 0%, rgba(15,53,219,.14), transparent 70%)"></div>
+
+      <div class="relative rounded-2xl bg-white ring-1 ring-ink/[0.08] shadow-[0_1px_2px_rgba(0,0,46,.04),0_30px_60px_-30px_rgba(0,0,46,.25)] overflow-hidden">
+        <!-- Window chrome -->
+        <div class="flex items-center justify-between h-11 px-4 border-b border-line bg-paper/60">
+          <div class="flex items-center gap-1.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-ink/15"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-ink/15"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-ink/15"></span>
+          </div>
+          <span class="text-[12px] text-ink/50 font-medium">fixth.ng/applications</span>
+          <span class="h-5 w-5"></span>
+        </div>
+
+        <div class="grid md:grid-cols-[220px_1fr]">
+          <!-- Sidebar -->
+          <aside class="hidden md:block border-r border-line bg-paper/40 p-4 text-[13px]">
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="h-8 w-8 rounded-full bg-brand text-white font-display font-semibold inline-flex items-center justify-center text-[13px]">AA</span>
+              <div class="min-w-0">
+                <p class="text-navy font-semibold truncate">Adaeze A.</p>
+                <p class="text-ink/50 text-[11px] truncate">UNILAG · 400L</p>
+              </div>
+            </div>
+            <nav class="space-y-1">
+              <a class="flex items-center gap-2.5 h-9 px-2.5 rounded-md text-ink/60 hover:bg-white hover:text-navy transition">
+                <svg class="ti text-[16px]"><use href="#i-search"/></svg>Discover
+              </a>
+              <a class="flex items-center gap-2.5 h-9 px-2.5 rounded-md bg-brand text-white">
+                <svg class="ti text-[16px]"><use href="#i-briefcase"/></svg>Applications
+                <span class="ml-auto h-5 px-1.5 rounded-full bg-white/20 text-[11px] inline-flex items-center font-semibold">4</span>
+              </a>
+              <a class="flex items-center gap-2.5 h-9 px-2.5 rounded-md text-ink/60 hover:bg-white hover:text-navy transition">
+                <svg class="ti text-[16px]"><use href="#i-doc"/></svg>Resume
+              </a>
+              <a class="flex items-center gap-2.5 h-9 px-2.5 rounded-md text-ink/60 hover:bg-white hover:text-navy transition">
+                <svg class="ti text-[16px]"><use href="#i-bell"/></svg>Alerts
+              </a>
+            </nav>
+          </aside>
+
+          <!-- Main -->
+          <div class="p-5 sm:p-6">
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <h3 class="font-display font-semibold text-navy text-[18px]">Your applications</h3>
+                <p class="text-[12px] text-ink/50">Updated just now</p>
+              </div>
+              <span class="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-md bg-brand-50 text-brand text-[12px] font-semibold">
+                <svg class="ti text-[13px]"><use href="#i-verified"/></svg>Verified student
+              </span>
+            </div>
+
+            <ul class="space-y-3">
+              <!-- Row 1 -->
+              <li class="flex items-center gap-3 p-3 rounded-xl border border-line hover:border-brand/30 transition-colors">
+                <span class="h-10 w-10 rounded-lg bg-navy text-white font-display font-semibold inline-flex items-center justify-center">P</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[14px] font-semibold text-navy truncate">SIWES Trainee · Pipelines</p>
+                  <p class="text-[12px] text-ink/50 truncate">Paragon Energy · Port Harcourt · 6 months</p>
+                </div>
+                <span class="hidden sm:inline-flex items-center gap-1.5 h-7 px-2.5 rounded-full bg-emerald-50 text-emerald-700 text-[12px] font-semibold">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Shortlisted
+                </span>
+              </li>
+              <!-- Row 2 -->
+              <li class="flex items-center gap-3 p-3 rounded-xl border border-line hover:border-brand/30 transition-colors">
+                <span class="h-10 w-10 rounded-lg bg-brand text-white font-display font-semibold inline-flex items-center justify-center">M</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[14px] font-semibold text-navy truncate">Industrial Trainee · Civil</p>
+                  <p class="text-[12px] text-ink/50 truncate">Macon Nigeria · Lagos · 4 months</p>
+                </div>
+                <span class="hidden sm:inline-flex items-center gap-1.5 h-7 px-2.5 rounded-full bg-brand-50 text-brand text-[12px] font-semibold">
+                  <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>Viewed
+                </span>
+              </li>
+              <!-- Row 3 -->
+              <li class="flex items-center gap-3 p-3 rounded-xl border border-line hover:border-brand/30 transition-colors">
+                <span class="h-10 w-10 rounded-lg bg-cyan text-navy font-display font-semibold inline-flex items-center justify-center">D</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[14px] font-semibold text-navy truncate">Mechanical Intern · R&amp;D</p>
+                  <p class="text-[12px] text-ink/50 truncate">Dangote Group · Ibese · 6 months</p>
+                </div>
+                <span class="hidden sm:inline-flex items-center gap-1.5 h-7 px-2.5 rounded-full bg-ink/5 text-ink/70 text-[12px] font-semibold">
+                  <svg class="ti text-[13px]"><use href="#i-clock"/></svg>Submitted
+                </span>
+              </li>
+              <!-- Row 4 (new, animated) -->
+              <li data-new class="relative flex items-center gap-3 p-3 rounded-xl border border-brand/30 bg-brand-50/40">
+                <span class="h-10 w-10 rounded-lg bg-navy text-white font-display font-semibold inline-flex items-center justify-center">S</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[14px] font-semibold text-navy truncate">Electrical Trainee · Grid Ops</p>
+                  <p class="text-[12px] text-ink/50 truncate">Siemens Energy · Abuja · 6 months</p>
+                </div>
+                <span class="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-full bg-brand text-white text-[12px] font-semibold shadow-[0_6px_14px_-6px_rgba(15,53,219,.6)]">
+                  <svg class="ti text-[13px]"><use href="#i-sparkle"/></svg>Offer
+                </span>
+              </li>
+            </ul>
+
+            <!-- Toast -->
+            <div class="mt-5 inline-flex items-center gap-2.5 pl-2 pr-3.5 h-10 rounded-full bg-navy text-white text-[13px] shadow-[0_12px_28px_-14px_rgba(0,0,46,.5)]">
+              <span class="inline-flex items-center justify-center h-6 w-6 rounded-full bg-brand">
+                <svg class="ti text-[13px]"><use href="#i-bell"/></svg>
+              </span>
+              Siemens sent you an offer. <a href="#" class="font-semibold text-cyan ml-1 hover:underline">Review →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Hero -> How it works chain handoff (proxies travel between the two sections) -->
+<div data-handoff aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden" style="display:none">
+  <div data-proxy="left" class="absolute left-0 top-0 origin-center will-change-transform">
+    <svg viewBox="0 0 516.8 129" class="block w-full h-full overflow-visible">
+      <g data-drift><g clip-path="url(#chain4)">
+        <rect data-fa x="0" y="-10" width="516.8" height="150" fill="url(#chain-fill-a)"/>
+        <rect data-fb x="0" y="-10" width="516.8" height="150" fill="url(#lumL)" opacity="0"/>
+      </g></g>
+    </svg>
+  </div>
+  <div data-proxy="right" class="absolute left-0 top-0 origin-center will-change-transform">
+    <svg viewBox="0 0 516.8 129" class="block w-full h-full overflow-visible">
+      <g data-drift><g clip-path="url(#chain4)">
+        <rect data-fa x="0" y="-10" width="516.8" height="150" fill="url(#chain-fill-b)"/>
+        <rect data-fb x="0" y="-10" width="516.8" height="150" fill="url(#lumR)" opacity="0"/>
+      </g></g>
+    </svg>
+  </div>
+</div>
+
+<script>
+(() => {
+  const layer = document.querySelector('[data-handoff]');
+  const how = document.getElementById('how');
+  if (!layer || !how) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const howSvg = how.querySelector('svg[viewBox="0 0 1033.6 129"]');
+  const howInner = how.firstElementChild;
+  // Must match GAP in the How it works script: where its chains start before connecting.
+  const GAP = 420, LEN = 516.8, VB = 1033.6, HERO_VB = 518.8;
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  const smooth = (t) => t * t * (3 - 2 * t);
+
+  const sides = ['left', 'right'].map((side) => {
+    const wrap = document.querySelector(`[data-chain="${side}"]`);
+    const proxy = layer.querySelector(`[data-proxy="${side}"]`);
+    return {
+      side,
+      heroPtr: wrap.querySelector('[data-ptr]'),
+      heroSvg: wrap.querySelector('svg'),
+      heroDrift: wrap.querySelector('.chain-drift'),
+      proxy,
+      fa: proxy.querySelector('[data-fa]'),
+      fb: proxy.querySelector('[data-fb]'),
+      drift: proxy.querySelector('[data-drift]'),
+      howG: how.querySelector(side === 'left' ? '[data-chain-left]' : '[data-chain-right]'),
+      unitsX: side === 'left' ? -GAP + LEN / 2 : LEN + GAP + LEN / 2,
+      // Full turn on the way down, mirrored: left spins clockwise, right counter-clockwise; both end level.
+      spin: side === 'left' ? 390 : -330,
+    };
+  });
+
+  const restore = (heroVisible) => {
+    layer.style.display = 'none';
+    sides.forEach((s) => {
+      s.heroPtr.style.opacity = heroVisible ? '' : '0';
+      s.howG.style.opacity = heroVisible ? '0' : '';
+    });
+  };
+
+  let raf = 0;
+  function frame() {
+    raf = 0;
+    const active = !reduce.matches && sides[0].heroSvg.getClientRects().length > 0;
+    if (!active) { layer.style.display = 'none'; sides.forEach((s) => { s.heroPtr.style.opacity = ''; s.howG.style.opacity = ''; }); return; }
+
+    const end = how.offsetTop;
+    const t = clamp(scrollY / end);
+    if (t <= 0) return restore(true);
+    if (t >= 1) return restore(false);
+
+    layer.style.display = 'block';
+    const e = smooth(t);
+    const sr = howSvg.getBoundingClientRect();
+    const k = sr.width / VB;
+    const relY = sr.top - howInner.getBoundingClientRect().top;
+
+    for (const s of sides) {
+      s.heroPtr.style.opacity = '0';
+      s.howG.style.opacity = '0';
+
+      const hr = s.heroSvg.getBoundingClientRect();
+      const kh = parseFloat(getComputedStyle(s.heroSvg).width) / HERO_VB;
+      const hx = hr.left + hr.width / 2, hy = hr.top + hr.height / 2 + scrollY;
+      const tx = sr.left + s.unitsX * k, ty = end + relY + (129 / 2) * k;
+
+      const cx = hx + (tx - hx) * e;
+      const ey = 1 - Math.pow(1 - t, 3);
+      const cy = hy + (ty - hy) * ey - scrollY;
+      const w = LEN * kh + (LEN * k - LEN * kh) * e;
+      const h = (w * 129) / LEN;
+
+      s.proxy.style.width = w + 'px';
+      s.proxy.style.height = h + 'px';
+      const rot = -30 + s.spin * e;
+      const pop = 1 + 0.12 * Math.sin(Math.PI * e);
+      s.proxy.style.transform = `translate(${cx - w / 2}px, ${cy - h / 2}px) rotate(${rot}deg) scale(${pop})`;
+      s.proxy.style.opacity = (0.12 + 0.88 * smooth(clamp(t / 0.85))).toFixed(3);
+
+      const fb = smooth(clamp((t - 0.5) / 0.4));
+      s.fb.setAttribute('opacity', fb.toFixed(3));
+      s.fa.setAttribute('opacity', (1 - fb).toFixed(3));
+
+      const m = new DOMMatrixReadOnly(getComputedStyle(s.heroDrift).transform);
+      s.drift.style.transform = `translateX(${(m.e * (1 - e)).toFixed(2)}px)`;
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+  addEventListener('scroll', kick, { passive: true });
+  addEventListener('resize', kick);
+  reduce.addEventListener('change', kick);
+  kick();
+})();
+</script>
+</body>
+</html>
